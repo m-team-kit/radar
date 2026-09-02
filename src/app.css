@@ -1,0 +1,282 @@
+:root {
+	--bg: #f6f7f9;
+	--surface: #ffffff;
+	--border: #e3e6ea;
+	--text: #1b2430;
+	--muted: #6b7683;
+	--accent: #2563eb;
+	--accent-soft: #eff4ff;
+	--ok: #16a34a;
+	--ok-soft: #e9f9ef;
+	--warn: #d97706;
+	--warn-soft: #fdf3e3;
+	--bad: #dc2626;
+	--bad-soft: #fdecec;
+	--radius: 10px;
+	--shadow: 0 1px 2px rgb(16 24 40 / 0.05);
+	font-family:
+		-ui-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	line-height: 1.5;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+header.topbar {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background: var(--surface);
+	border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 24px;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.brand {
+	font-weight: 700;
+	font-size: 16px;
+	color: var(--text);
+	letter-spacing: 0.2px;
+}
+
+.brand:hover {
+	text-decoration: none;
+}
+
+.brand span {
+	color: var(--accent);
+}
+
+.topbar-inner .spacer {
+	flex: 1;
+}
+
+.user-chip {
+	color: var(--muted);
+	font-size: 13px;
+}
+
+main {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 24px;
+}
+
+@media (min-width: 1600px) {
+	main,
+	.topbar-inner {
+		max-width: 1800px;
+	}
+}
+
+@media (min-width: 2200px) {
+	main,
+	.topbar-inner {
+		max-width: 2400px;
+	}
+}
+
+h1 {
+	font-size: 22px;
+	margin: 0 0 4px;
+}
+
+.subtitle {
+	color: var(--muted);
+	margin: 0 0 20px;
+	font-size: 14px;
+}
+
+.card {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+}
+
+.page-head {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+.page-head h1 {
+	margin: 0;
+	flex: 1;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+	background: var(--surface);
+	color: var(--text);
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btn:hover {
+	text-decoration: none;
+	border-color: #c8ced6;
+}
+
+.btn.primary {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: #fff;
+}
+
+.btn.primary:hover {
+	background: #1d4ed8;
+}
+
+.btn.danger {
+	color: var(--bad);
+	border-color: #f3caca;
+}
+
+.btn.danger:hover {
+	background: var(--bad-soft);
+}
+
+.btn.small {
+	padding: 4px 10px;
+	font-size: 13px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+	gap: 16px;
+}
+
+.field {
+	margin-bottom: 16px;
+}
+
+.field label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: 400;
+	font-family: inherit;
+	background: var(--surface);
+	color: var(--text);
+}
+
+.field textarea {
+	resize: vertical;
+	min-height: 64px;
+}
+
+.field .hint {
+	font-size: 12px;
+	color: var(--muted);
+	margin-top: 4px;
+}
+
+.row {
+	display: flex;
+	gap: 12px;
+}
+
+.row .field {
+	flex: 1;
+}
+
+.form-actions {
+	display: flex;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+}
+
+.checkbox input {
+	width: auto;
+}
+
+.error {
+	background: var(--bad-soft);
+	color: var(--bad);
+	border: 1px solid #f3caca;
+	border-radius: 8px;
+	padding: 10px 12px;
+	font-size: 14px;
+	margin-bottom: 16px;
+}
+
+.empty {
+	color: var(--muted);
+	text-align: center;
+	padding: 48px 16px;
+}
+
+.mono {
+	font-family: 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+	font-size: 13px;
+}
+
+.tag {
+	display: inline-block;
+	padding: 1px 8px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.tag.gray {
+	background: #eef1f4;
+	color: var(--muted);
+}
+
+.tag.blue {
+	background: var(--accent-soft);
+	color: var(--accent);
+}

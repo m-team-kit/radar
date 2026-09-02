@@ -1,0 +1,11 @@
+services:
+  radar:
+    image: ghcr.io/your-org/radar:latest
+    ports:
+      - "3000:3000"
+    environment:
+      RADAR_CONFIG: /app/config/radar.yaml
+    volumes:
+      - ./config/radar.yaml:/app/config/radar.yaml:ro
+      - ./data:/app/data
+    restart: unless-stopped

@@ -1,0 +1,14 @@
+node_modules
+build
+.svelte-kit
+data
+.git
+.gitignore
+.DS_Store
+*.db
+*.db-shm
+*.db-wal
+config/radar.yaml
+config/radar.yml
+README.md
+docker-compose.example.yml

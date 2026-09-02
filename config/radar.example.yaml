@@ -1,0 +1,49 @@
+# RADAR configuration
+# Copy to config/radar.yaml (or point RADAR_CONFIG at it).
+
+server:
+  host: 0.0.0.0
+  port: 3000
+  # Public URL of this instance (used for OIDC redirect and report URLs)
+  base_url: http://localhost:3000
+
+db:
+  path: data/radar.db
+
+oidc:
+  issuer: https://your-idp.example.com/realms/your-realm
+  client_id: radar
+  client_secret: change-me
+  redirect_uri: http://localhost:3000/auth/callback
+  # How the client authenticates to the token endpoint:
+  #   post  - client_secret_post (secret in the POST body, default)
+  #   basic - client_secret_basic (secret in the Authorization header)
+  #   none  - public client, no secret
+  # If you get "invalid_client" on the code exchange, your IdP likely expects
+  # "basic" (check the client's token_endpoint_auth_method registration).
+  client_auth_method: post
+  # Dotted path to the group membership claim (e.g. "groups" or "user.groups")
+  groups_attribute: groups
+  scope: openid profile email
+
+session:
+  # At least 32 characters. Use a long random string; quote it if it is
+  # numeric-only (e.g. secret: "12345678901234567890123456789012345678").
+  secret: change-me-to-a-long-random-secret-at-least-32-characters
+  cookie_name: radar_session
+  max_age_s: 604800
+
+# Optional. Omit the whole block to disable email notifications.
+smtp:
+  host: smtp.example.com
+  port: 587
+  secure: false
+  user: radar@example.com
+  pass: change-me
+  from: Radar <radar@example.com>
+
+polling:
+  tick_s: 5
+  concurrency: 10
+  default_source_interval_s: 3600
+  default_deployment_interval_s: 3600
