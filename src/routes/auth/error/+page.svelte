@@ -23,7 +23,7 @@
 	.message {
 		color: var(--bad);
 		background: var(--bad-soft);
-		border: 1px solid #f3caca;
+		border: 1px solid var(--danger-border);
 		border-radius: 8px;
 		padding: 12px;
 		font-size: 14px;

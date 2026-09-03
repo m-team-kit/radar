@@ -75,8 +75,8 @@
 	}
 	.service-card:hover {
 		text-decoration: none;
-		border-color: #c6cdd6;
-		box-shadow: 0 4px 12px rgb(16 24 40 / 0.08);
+		border-color: var(--hover-border);
+		box-shadow: var(--shadow-hover);
 	}
 	.sc-head {
 		display: flex;

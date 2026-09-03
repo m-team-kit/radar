@@ -58,7 +58,7 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
-		background: #f2f4f7;
+		background: var(--subtle);
 		flex-shrink: 0;
 	}
 	.logo-preview img {

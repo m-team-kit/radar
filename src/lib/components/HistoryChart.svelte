@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
+	import { get } from 'svelte/store';
 	import * as echarts from 'echarts';
 	import type { ECharts } from 'echarts';
 	import { orderVersionCategories, isCanonicalVersion } from '$lib/versions';
+	import { theme, type Theme } from '$lib/theme';
 	import type { VersionKind } from '$lib/types';
 
 	export interface HistoryPoint {
@@ -47,20 +49,40 @@
 		Math.max(height, gridTop + GRID_BOTTOM + categories.length * CATEGORY_LABEL_HEIGHT)
 	);
 
-	function buildOption() {
+	function buildOption(mode: Theme) {
+		const dark = mode === 'dark';
+		const axisLabelColor = dark ? '#9aa4b1' : '#3f4a57';
+		const lineColor = dark ? '#2c313a' : '#e3e6ea';
+		const nameColor = dark ? '#9aa4b1' : '#6b7683';
+		const textColor = dark ? '#e5e9f0' : '#1b2430';
 		return {
 			backgroundColor: 'transparent',
-			tooltip: { trigger: 'axis' },
-			legend: filtered.length > 1 ? { show: true, top: 0, type: 'scroll' } : undefined,
+			tooltip: {
+				trigger: 'axis',
+				...(dark
+					? { backgroundColor: '#1a1e24', borderColor: '#2c313a', textStyle: { color: '#e5e9f0' } }
+					: {})
+			},
+			legend:
+				filtered.length > 1
+					? { show: true, top: 0, type: 'scroll', textStyle: { color: textColor } }
+					: undefined,
 			grid: { left: 8, right: 16, top: gridTop, bottom: GRID_BOTTOM, containLabel: true },
-			xAxis: { type: 'time' },
+			xAxis: {
+				type: 'time',
+				axisLine: { lineStyle: { color: lineColor } },
+				axisLabel: { color: axisLabelColor },
+				splitLine: { lineStyle: { color: lineColor } }
+			},
 			yAxis: {
 				type: 'category',
 				data: categories,
 				inverse: true,
 				name: 'version',
-				nameTextStyle: { color: '#6b7683' },
-				axisLabel: { interval: 0 }
+				nameTextStyle: { color: nameColor },
+				axisLabel: { interval: 0, color: axisLabelColor },
+				axisLine: { lineStyle: { color: lineColor } },
+				splitLine: { lineStyle: { color: lineColor } }
 			},
 			series: filtered.map((s, i) => ({
 				name: s.name,
@@ -78,12 +100,12 @@
 	}
 
 	$effect(() => {
-		if (chart) chart.setOption(buildOption(), true);
+		if (chart) chart.setOption(buildOption($theme), true);
 	});
 
 	onMount(() => {
 		chart = echarts.init(el);
-		chart.setOption(buildOption(), true);
+		chart.setOption(buildOption(get(theme)), true);
 		const ro = new ResizeObserver(() => chart?.resize());
 		ro.observe(el);
 		cleanup = () => ro.disconnect();

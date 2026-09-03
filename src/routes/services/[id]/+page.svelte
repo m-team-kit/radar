@@ -367,7 +367,7 @@
 		gap: 8px;
 		margin-top: 8px;
 		padding: 6px 8px;
-		background: #f2f4f7;
+		background: var(--subtle);
 		border-radius: 6px;
 	}
 	.report-url .mono {
