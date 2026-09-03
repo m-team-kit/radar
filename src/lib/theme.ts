@@ -17,6 +17,8 @@ export function setTheme(t: Theme) {
 	document.documentElement.dataset.theme = t;
 	localStorage.setItem(KEY, t);
 	theme.set(t);
+	const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
+	if (favicon) favicon.href = t === 'dark' ? '/favicon-dark.svg' : '/favicon-light.svg';
 }
 
 export function toggleTheme() {

@@ -1,5 +1,7 @@
 # RADAR — Release & Deployment Activity Radar
 
+![RADAR logo](static/logo-full.svg)
+
 A web dashboard that tracks the **latest releases** of your services' release
 sources and the **version currently deployed** in each deployment — with a
 clear signal when an update is available, plus optional email/webhook

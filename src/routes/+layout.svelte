@@ -7,7 +7,16 @@
 
 <header class="topbar">
 	<div class="topbar-inner">
-		<a class="brand" href="/">RA<span>DAR</span></a>
+		<a class="brand" href="/">
+			<svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+				<path d="M12 12 L12 3 A9 9 0 0 1 21 12 Z" fill="currentColor" fill-opacity="0.28" />
+				<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
+				<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1" opacity="0.55" />
+				<circle cx="12" cy="12" r="1.1" fill="currentColor" />
+				<circle cx="18.36" cy="5.64" r="1.9" fill="currentColor" />
+			</svg>
+			RAD<span>AR</span>
+		</a>
 		<div class="spacer"></div>
 		<button class="btn small theme-toggle" onclick={toggleTheme} title="Toggle dark mode" aria-label="Toggle dark mode">
 			{#if $theme === 'dark'}
@@ -46,5 +55,15 @@
 	.theme-toggle svg {
 		width: 16px;
 		height: 16px;
+	}
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.brand-mark {
+		width: 22px;
+		height: 22px;
+		color: var(--accent);
 	}
 </style>
