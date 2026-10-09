@@ -216,8 +216,8 @@ export function createSource(db: Database.Database, serviceId: string, input: So
 	const id = newId();
 	const ts = nowIso();
 	db.prepare(
-		`INSERT INTO release_sources (id, service_id, name, type, config, include_prereleases, full_versions_only, poll_interval_s, next_check_at, created_at, updated_at)
-		 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+		`INSERT INTO release_sources (id, service_id, name, type, config, include_prereleases, full_versions_only, poll_interval_s, latest_version, versions_json, next_check_at, created_at, updated_at)
+		 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 	).run(
 		id,
 		serviceId,
@@ -227,6 +227,8 @@ export function createSource(db: Database.Database, serviceId: string, input: So
 		input.include_prereleases ? 1 : 0,
 		input.full_versions_only ? 1 : 0,
 		input.poll_interval_s,
+		null,
+		'[]',
 		ts,
 		ts,
 		ts
